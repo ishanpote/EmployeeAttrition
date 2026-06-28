@@ -1,153 +1,95 @@
 # Employee Attrition Prediction
 
-This repository contains a Jupyter Notebook project focused on building a machine learning system to predict employee attrition using HR analytics data. The project explores which factors are associated with employees leaving a company and turns those findings into practical HR insights.
+This repository explores employee attrition using the IBM HR Analytics dataset. The goal is to understand why employees leave, which groups are most at risk, and what signals can help HR teams take earlier action.
 
-## Project Goal
+## Overview
 
-The goal of this project is to answer a business-critical question:
+Employee attrition is a major challenge for organizations because it affects hiring costs, team stability, productivity, and retention of institutional knowledge. This project uses machine learning and exploratory data analysis to identify the most important factors linked to employee exits.
 
-> **Which employees are most likely to leave, and why?**
+The analysis focuses on questions such as:
 
-Using the IBM HR Analytics Employee Attrition dataset, the notebook walks through data cleaning, exploratory data analysis, preprocessing, model training, evaluation, and business recommendations.
-
-## Business Problem
-
-Every company loses employees, but losing the wrong employees at the wrong time can be expensive. Attrition creates costs related to:
-
-- Hiring and onboarding
-- Training and ramp-up time
-- Lower productivity
-- Team disruption and morale issues
-
-This project helps HR teams identify attrition risk early so they can take action before valuable employees leave.
+- Which departments and job roles show the highest attrition?
+- How do income, work-life balance, and tenure relate to turnover?
+- Which model gives the most useful prediction performance?
+- What features matter most when estimating attrition risk?
 
 ## Dataset
 
-The notebook uses the **IBM HR Analytics Employee Attrition** dataset from Kaggle:
+The project uses the **IBM HR Analytics Employee Attrition** dataset from Kaggle:
 
-- **Dataset link:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
-- **File name:** `WA_Fn-UseC_-HR-Employee-Attrition.csv`
-- **Rows:** 1,470
-- **Target column:** `Attrition` (`Yes` / `No`)
+https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
-## What This Notebook Covers
+It contains 1,470 employee records with a target column, `Attrition`, indicating whether an employee stayed or left.
 
-### 1. Data Loading & Exploration
-- Load the CSV file with Pandas
-- Preview the dataset
-- Check rows and columns
-- Measure class balance for attrition
-- Identify numeric and categorical columns
+## What This Repository Contains
 
-### 2. Data Cleaning & Preprocessing
-- Check and handle missing values
-- Remove irrelevant or constant columns such as:
-  - `EmployeeNumber`
-  - `Over18`
-  - `StandardHours`
-- Convert `Attrition` to binary format (`Yes` → `1`, `No` → `0`)
-- Apply One-Hot Encoding to categorical variables
-- Scale numeric features with `StandardScaler`
+- `analysis.ipynb` — end-to-end analysis notebook
+- `HR_Attrition.csv` — dataset used for the analysis
+- `summary.pdf` or `summary.docx` — short business-facing summary
+- `charts/` — saved visualizations from the analysis
 
-### 3. Exploratory Data Analysis
-The notebook analyzes attrition patterns across:
-- Department
-- Job Role
-- Monthly Income
-- Work-Life Balance
-- Years at Company
+## Analysis Workflow
 
-It also highlights key business patterns and retention risks.
+### Data exploration
+The notebook begins by loading and inspecting the data, checking class balance, and separating numeric and categorical features.
 
-### 4. Model Building & Comparison
-Three classification models are trained and compared:
+### Data preparation
+The dataset is cleaned by removing irrelevant fields, encoding categorical variables, converting the target column to binary format, and scaling numeric features.
+
+### Exploratory analysis
+The analysis studies attrition patterns by department, job role, salary, work-life balance, and years at the company to identify meaningful trends.
+
+### Model comparison
+Several classification models are trained and compared, including:
+
 - Logistic Regression
 - Random Forest Classifier
 - Gradient Boosting Classifier
 
-The project uses `class_weight='balanced'` to address class imbalance.
+### Evaluation and interpretation
+The best-performing model is evaluated using precision, recall, F1-score, ROC-AUC, and confusion matrix analysis. Feature importance is then used to highlight the strongest predictors of attrition.
 
-### 5. Model Evaluation
-Each model is evaluated using:
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC
-- Confusion Matrix
+## Key Business Questions
 
-The best model is then used to extract feature importance and identify the strongest drivers of attrition.
+This project is designed to help answer practical HR questions such as:
 
-### 6. Visualization
-Expected charts include:
-- Attrition by Department and Job Role
-- Monthly Income comparison for employees who left vs stayed
-- Confusion matrix heatmap
-- Feature importance chart
-- ROC curve comparison
+- Which employees are most likely to leave?
+- What warning signs appear before attrition happens?
+- Which departments or roles need more retention support?
+- Is compensation the main reason employees leave, or are other factors more important?
 
-### 7. HR Insights & Recommendations
-The notebook concludes with plain-language business recommendations for HR leaders, including:
-- Top factors influencing attrition
-- Departments or roles to prioritize
-- Practical retention actions
-- Model limitations
+## Visualizations
 
-## Repository Contents
+The notebook includes charts such as:
 
-This repository is intended to include:
-
-- `analysis.ipynb` — full notebook with all analysis and modeling steps
-- `HR_Attrition.csv` — dataset used for the project
-- `summary.pdf` or `summary.docx` — non-technical business summary for HR leadership
-- `charts/` — saved visualizations as `.png` files
-
-## Recommended Project Structure
-
-```text
-EmployeeAttrition_[YourName]/
-├── analysis.ipynb
-├── HR_Attrition.csv
-├── summary.pdf
-└── charts/
-    ├── attrition_by_department.png
-    ├── attrition_by_job_role.png
-    ├── income_boxplot.png
-    ├── confusion_matrix.png
-    ├── feature_importance.png
-    └── roc_curve.png
-```
+- Attrition by department and job role
+- Monthly income comparison for employees who left vs. stayed
+- Confusion matrix for the best model
+- Top 10 feature importances
+- ROC curve comparison across models
 
 ## Libraries Used
 
 - Python 3.x
-- Jupyter Notebook / Google Colab
 - Pandas
 - NumPy
 - Scikit-learn
 - Matplotlib
 - Seaborn
+- Jupyter Notebook / Google Colab
 
-## How to Run
+## Why This Project Matters
+
+The purpose of this work is not only to predict attrition, but also to turn model results into understandable business insights that HR teams can use for retention planning and employee support.
+
+## Getting Started
 
 1. Download the Kaggle dataset.
 2. Place the CSV file in the project folder.
 3. Open `analysis.ipynb` in Jupyter Notebook or Google Colab.
-4. Run the notebook cells in order.
-5. Review the charts, model results, and final HR recommendations.
+4. Run the notebook from top to bottom.
+5. Review the charts, model results, and business conclusions.
 
-## Key Questions This Project Answers
+## Project Focus
 
-- What is the attrition rate in the company?
-- Which departments and job roles have the highest turnover?
-- Does salary strongly influence attrition?
-- How does work-life balance affect employee retention?
-- Which model best predicts attrition?
-- What features are most important in predicting exits?
-
-## Deliverable
-
-The final submission should be a ZIP file containing the completed folder, along with the notebook link submitted through the provided form.
-
-## Note
-
-This project is designed not just to build a model, but to translate data science into business language that HR stakeholders can understand and act on.
+This repository is centered on practical employee retention analysis and machine learning interpretation for HR decision-making.
